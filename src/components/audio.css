@@ -1,0 +1,10 @@
+.audio>.graph {
+	display: flex;
+	height: 50px;
+	background: white;
+}
+
+.audio>.graph>.bar {
+	width: 1px;
+	background: black;
+}

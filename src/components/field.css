@@ -1,0 +1,16 @@
+.field {
+	color: black;
+	display: flex;
+	width: 100%;
+}
+
+.field>label{
+	flex: none;
+	min-width: 5em;
+	margin-right: 1em;
+	text-align: right;
+}
+
+.field>input {
+	flex: auto;
+}

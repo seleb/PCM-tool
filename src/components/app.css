@@ -1,0 +1,88 @@
+.app input,
+.app textarea,
+.app button {
+	color:white;
+	background:black;
+	font-family: inherit;
+	border: outset 2px grey;
+}
+
+.app input:focus,
+.app textarea:focus,
+.app button:focus {
+	outline: none;
+	border: inset 2px black;
+}
+
+button {
+	cursor: pointer;
+}
+
+.app {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	height: 100%;
+	width: 100%;
+	background: white;
+}
+
+.app>header {
+	box-sizing: border-box;
+	flex: none;
+	font-size: 200%;
+	padding: .1em;
+	width: 100%;
+	background: black;
+	color: white;
+}
+
+.app>main {
+	flex: auto;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	align-items: center;
+	justify-content: center;
+	justify-items: stretch;
+	align-content: stretch;
+	width: 100%;
+	height: 100%;
+	overflow: auto;
+}
+
+.app>main>.input{
+	display: flex;
+	flex-direction: column;
+	height: 100%;
+	padding: 1em;
+	word-break: break-all;
+}
+
+.app>main>.input>textarea{
+	width:100%;
+	resize: vertical;
+	background: black;
+}
+
+.app>footer {
+	box-sizing: border-box;
+	flex: none;
+	padding: 1em;
+	width: 100%;
+	background: black;
+	color: white;
+}
+
+.link::before {
+	color: white;
+	content: '/';
+	display: inline-block;
+}
+
+@media screen and (max-height: 30em) {
+	.app>header,
+	.app>footer {
+		display: none;
+	}
+}
