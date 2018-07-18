@@ -96,7 +96,7 @@ export default class App extends Component {
 		return (
 			<div class="app">
 				<header>
-					music tool
+					PCM tool
 				</header>
 				<main>
 					<div class="input">
