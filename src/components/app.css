@@ -5,6 +5,12 @@
 	background:black;
 	font-family: inherit;
 	border: outset 2px grey;
+	margin: 0;
+}
+
+.app input,
+.app button {
+	height: 2em;
 }
 
 .app input:focus,

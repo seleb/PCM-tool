@@ -6,6 +6,7 @@ import Link from './link';
 import Field from './field';
 
 import './app.css';
+import './input-range.css';
 import Audio from './audio';
 
 function r(from, to) {
