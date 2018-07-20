@@ -1,6 +1,8 @@
 .app input,
 .app textarea,
 .app button {
+	flex-grow: 1;
+	flex-shrink: 0;
 	color:white;
 	background:black;
 	font-family: inherit;
@@ -90,5 +92,11 @@ button {
 	.app>header,
 	.app>footer {
 		display: none;
+	}
+}
+
+@media screen and (max-width: 25em) {
+	.app>main {
+		display: block;
 	}
 }
