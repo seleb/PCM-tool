@@ -6,6 +6,7 @@ import Link from './link';
 import Field from './field';
 
 import './app.css';
+import './input-range.css';
 import Audio from './audio';
 
 function r(from, to) {
@@ -59,15 +60,27 @@ export default class App extends Component {
 
 	randomize = () => {
 		const patterns = [
-			`(t%${r(0, 250)}*${r(0, 2000)}&t)/${r(0, 500)}&(t%${r(0, 250)}*${r(0, 2000)}&t)/${r(0, 300)}`,
-			`t%${r(0, 500)}*${r(0, 4000)}&t/${r(0, 400)}`,
-			`t%${r(0, 500)}*${r(0, 2000)}&t`,
+			`(t%${r(1, 250)}*${r(1, 2000)}&t)/${r(1, 500)}&(t%${r(1, 250)}*${r(1, 2000)}&t)/${r(1, 300)}`,
+			`t%${r(1, 500)}*${r(1, 4000)}&t/${r(1, 400)}`,
+			`t%${r(1, 500)}*${r(1, 2000)}&t`,
 			`Math.random()*${this.state.range}`,
-			`t/${r(0, 800)}*((t>>${r(0, 24)}|t>>${r(0, 16)})&${r(0, 128)}&t>>${r(0, 16)})`,
-			`Math.sin(t/${r(0, 100)})*${r(0, 1000)}+Math.sin(t%${r(0, 1000)}&(t/${r(0, 2000)}))*${r(0, 1000)}`,
-			`t/${r(0,32)}|(t<<${r(0,8)}&t/${r(0,8)}<<${r(0,8)})`,
+			`t/${r(1, 800)}*((t>>${r(1, 24)}|t>>${r(1, 16)})&${r(1, 128)}&t>>${r(1, 16)})`,
+			`Math.sin(t/${r(1, 100)})*${r(1, 1000)}+Math.sin(t%${r(1, 1000)}&(t/${r(1, 2000)}))*${r(1, 1000)}`,
+			`t/${r(1, 32)}|(t<<${r(1, 8)}&t/${r(1, 8)}<<${r(1, 8)})`,
+			`t*${r(1, 10)}/(t&${r(1, 120)})&(t<<${r(1, 43)}<<(t>>${r(1, 22)}))`,
+			`((t<<${r(1,4)})/((t<<${r(1,4)})&(t>>${r(1,10)})&t>>${r(1,20)}))|t>>(${r(1,8)}-(${r(1,4)}^${r(1,10)}&t>>${r(1,40)}))|t>>${r(1,20)}`,
+			`(t&document.body.clientWidth)/${r(1,100)}*t%(${r(1,2500)}*document.body.clientHeight)`,
 		];
 		this.setFormula(patterns[r(0, patterns.length)]);
+	}
+
+	mutate = () => {
+		const { formula = '' } = this.state;
+		this.setFormula(formula.replace(/\d+/g, match => {
+			let num = parseFloat(match);
+			num += (Math.random() - 0.5) * Math.max(5, Math.abs(num) * 0.1);
+			return Math.floor(Math.abs(num)).toString(10);
+		}));
 	}
 
 	restoreDefaults = () => {
@@ -108,7 +121,8 @@ export default class App extends Component {
 							<label for="volume">volume:</label>
 							<input id="volume" name="volume" type="range" min="0" max="1" step=".01" value={volume} onChange={event => this.setField("volume", event.currentTarget.value)} />
 						</div>
-						<button onClick={this.randomize}>randomize</button>
+						<button onClick={this.randomize} title="generate a new formula">randomize</button>
+						<button onClick={this.mutate} title="tweak existing formula">mutate</button>
 						<button onClick={this.restoreDefaults}>restore defaults</button>
 						<Audio {...audioProps} />
 					</div>
