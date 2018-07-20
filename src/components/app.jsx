@@ -70,6 +70,15 @@ export default class App extends Component {
 		this.setFormula(patterns[r(0, patterns.length)]);
 	}
 
+	mutate = () => {
+		const { formula = '' } = this.state;
+		this.setFormula(formula.replace(/\d+/g, match => {
+			let num = parseFloat(match);
+			num += (Math.random() - 0.5) * Math.max(5, Math.abs(num) * 0.1);
+			return Math.floor(Math.abs(num)).toString(10);
+		}));
+	}
+
 	restoreDefaults = () => {
 		this.setState({
 			range: 1000,
@@ -108,7 +117,8 @@ export default class App extends Component {
 							<label for="volume">volume:</label>
 							<input id="volume" name="volume" type="range" min="0" max="1" step=".01" value={volume} onChange={event => this.setField("volume", event.currentTarget.value)} />
 						</div>
-						<button onClick={this.randomize}>randomize</button>
+						<button onClick={this.randomize} title="generate a new formula">randomize</button>
+						<button onClick={this.mutate} title="tweak existing formula">mutate</button>
 						<button onClick={this.restoreDefaults}>restore defaults</button>
 						<Audio {...audioProps} />
 					</div>
