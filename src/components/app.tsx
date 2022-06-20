@@ -119,7 +119,7 @@ export default class App extends Component {
 						<Field field="fadeIn" defaultValue={1} value={fadeIn} setState={this.setField} />
 						<div class="field">
 							<label for="volume">volume:</label>
-							<input id="volume" name="volume" type="range" min="0" max="1" step=".01" value={volume} onChange={event => this.setField("volume", event.currentTarget.value)} />
+							<input id="volume" name="volume" type="range" min="0" max="1" step=".01" value={volume} onInput={event => this.setField("volume", event.currentTarget.value)} />
 						</div>
 						<button onClick={this.randomize} title="generate a new formula">randomize</button>
 						<button onClick={this.mutate} title="tweak existing formula">mutate</button>
