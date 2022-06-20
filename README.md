@@ -2,4 +2,6 @@
 
 Helper for generating generative PCM snippets
 
-![cover](./cover.png)
+- [itch.io](https://seansleblanc.itch.io/pcm-tool)
+
+![Screenshot showing UI](./cover.png)

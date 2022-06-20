@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>PCM-tool</title>
+	<meta name="description" content="Helper for generating generative PCM snippets" />
+	<meta name="robots" content="index, follow" />
+	<meta name="theme-color" content="#1d2b53">
+
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content="https://seansleblanc.itch.io/pcm-tool" />
+	<meta property="og:title" content="pcm-tool" />
+	<meta property="og:description" content="Helper for generating generative PCM snippets" />
+	<meta property="og:image" content="https://raw.githubusercontent.com/seleb/pcm-tool/master/cover.png" />
+
+	<link rel="icon" href="./icon.png" type="image/png" />
+	<link rel="apple-touch-icon" href="./icon_512.png" />
+	<link rel="manifest" href="./manifest.webmanifest" />
+
+	<script type="application/ld+json">
+		{
+			"@context": "http://schema.org/",
+			"@type": "WebApplication",
+			"name": "pcm-tool",
+			"description": "Helper for generating generative PCM snippets",
+			"url": "https://seansleblanc.itch.io/pcm-tool",
+			"applicationCategory": "Art",
+			"operatingSystem": "all",
+			"browserRequirements": "Requires JavaScript. Requires HTML5.",
+			"offers": {
+				"@type": "Offer",
+				"priceCurrency": "USD",
+				"price": "0.00"
+			},
+			"softwareHelp": {
+				"@type": "CreativeWork",
+				"url": "https://github.com/seleb/pcm-tool/issues"
+			}
+		}
+	</script>
+	<script>
+		// https://www.bha.ee/how-to-make-your-parcel-js-app-progressive/
+		// this is needed because parcel will not try to resolve this as a file
+		const sw = "service-worker.js";
+		navigator.serviceWorker
+			.register(sw)
+			.then(registration => {
+				registration.onupdatefound = () => {
+					const installingWorker = registration.installing;
+					if (installingWorker == null) {
+						return;
+					}
+					installingWorker.onstatechange = () => {
+						if (installingWorker.state === "installed") {
+							if (navigator.serviceWorker.controller) {
+								console.log(
+									"New content is available and will be used when all tabs for this page are closed."
+								);
+							} else {
+								console.log("Content is cached for offline use.");
+							}
+						}
+					};
+				};
+			})
+			.catch(error => {
+				console.error("Error during service worker registration:", error);
+			});
+	</script>
+</head>
+
+<body>
+	<script type="module" src="./index.ts"></script>
+	<noscript>This tool requires javascript to be enabled.</noscript>
+</body>
+
+</html>

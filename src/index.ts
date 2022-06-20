@@ -25,6 +25,9 @@ function renderPreload() {
 function fail({
 	message,
 	error
+}: {
+	message: string;
+	error: unknown;
 }) {
 	progressEl.textContent = `${message} - Sorry :(`;
 	throw error;
@@ -33,12 +36,8 @@ function fail({
 
 document.body.appendChild(progressEl);
 
-Promise.all([
-		import ('./main')
-	])
-	.then(([{
-		default: main
-	}]) => {
+import ('./main')
+	.then(() => {
 		progressEl.remove();
 	}, error => {
 		fail({

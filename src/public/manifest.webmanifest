@@ -1,0 +1,30 @@
+{
+	"short_name": "fillp-tool",
+	"name": "fillp-tool",
+	"icons": [{
+		"src": "./icon.png",
+		"type": "image/png",
+		"sizes": "32x32",
+		"purpose": "maskable any"
+	}, {
+		"src": "./icon_192.png",
+		"type": "image/png",
+		"sizes": "192x192",
+		"purpose": "maskable any"
+	}, {
+		"src": "./icon_256.png",
+		"type": "image/png",
+		"sizes": "256x256",
+		"purpose": "maskable any"
+	}, {
+		"src": "./icon_512.png",
+		"type": "image/png",
+		"sizes": "512x512",
+		"purpose": "maskable any"
+	}],
+	"display": "standalone",
+	"orientation": "any",
+	"theme_color": "#000000",
+	"background_color": "#000000",
+	"start_url": "."
+}
