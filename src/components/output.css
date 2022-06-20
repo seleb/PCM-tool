@@ -24,6 +24,7 @@
 	cursor: copy;
 	text-overflow: ellipsis;
 	user-select: text;
+	border: outset 2px grey;
 }
 
 .output>.js:focus {
