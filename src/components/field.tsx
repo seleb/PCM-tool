@@ -1,35 +1,35 @@
-import { h, Component } from 'preact';
+import { h, ComponentProps } from 'preact';
+import { useCallback, useEffect } from 'preact/hooks';
 import './field.css';
 
-export default class Link extends Component {
-	onChange = ({
+export default function Field({
+	field = '',
+	value = 0,
+	defaultValue = 0,
+	setState,
+}: {
+	field?: string;
+	value?: number;
+	defaultValue?: number;
+	setState: (field: string, value: number) => void;
+}) {
+	const onChange = useCallback<NonNullable<ComponentProps<'input'>['onChange']>>(({
 		currentTarget: {
-			value,
+			value: newValue,
 		},
 	}) => {
-		const {
-			setState,
-			field,
-			defaultValue,
-		} = this.props;
-		setState(field, (isNaN(value) || !value) ? defaultValue : Math.floor(Number(value)));
-	}
+		setState(field, (isNaN(parseFloat(newValue)) || !newValue) ? defaultValue : Math.floor(Number(newValue)));
+	}, []);
 
-	componentDidMount(){
-		this.onChange({currentTarget:{value:this.props.value}});
-	}
+	useEffect(() => {
+		// @ts-ignore
+		onChange({currentTarget:{value}});
+	}, []);
 
-	render({
-		field = '',
-		value = 0,
-		defaultValue = 0,
-		setState,
-	}) {
-		return (
-			<div class="field">
-				<label for={field}>{field}:</label>
-				<input type="text" id={field} name={field} value={value} onChange={this.onChange} />
-			</div>
-		);
-	}
+	return (
+		<div class="field">
+			<label for={field}>{field}:</label>
+			<input type="text" id={field} name={field} value={value} onChange={onChange} />
+		</div>
+	);
 }

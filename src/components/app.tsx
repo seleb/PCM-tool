@@ -1,15 +1,15 @@
 import { h, Component } from 'preact';
 
-import Input from './input';
-import Output from './output';
-import Link from './link';
 import Field from './field';
+import Input from './input';
+import Link from './link';
+import Output from './output';
 
 import './app.css';
-import './input-range.css';
 import Audio from './audio';
+import './input-range.css';
 
-function r(from, to) {
+function r(from: number, to: number) {
 	return Math.floor(Math.random() * (to - from) + from);
 }
 
@@ -26,7 +26,7 @@ export default class App extends Component {
 		try {
 			this.state = {
 				...this.state,
-				...JSON.parse(localStorage.getItem('state')),
+				...JSON.parse(localStorage.getItem('state') || ''),
 			};
 		} catch (error) {
 			console.error(error);
